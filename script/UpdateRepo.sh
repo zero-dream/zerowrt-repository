@@ -7,6 +7,9 @@
 # Param
 updatePath=$1
 
+# Source
+source "$ZD_ScriptLibPath/config.sh"
+
 # --------------------------------------------------
 
 cd "$GITHUB_WORKSPACE/"
@@ -18,12 +21,16 @@ repoLen=$(echo "$repoJson" | jq '. | length')
 # --------------------------------------------------
 
 # UpdateArchiveList
-repoConfigHashPath="$updatePath/config/RepoConfig.sha256"
+updateRepoCfg=$(readConfig 'update-repo')
 repoConfigPath="$updatePath/config/RepoConfig.json5"
-sha256Expected=$(cat "$repoConfigHashPath")
+sha256Expected=$(echo "$updateRepoCfg" | jq -r '.repo-config.sha256 // ""')
 sha256Computed=$(sha256sum "$repoConfigPath" | awk '{print $1}')
 if [[ "$sha256Expected" != "$sha256Computed" ]]; then
-	printf "$sha256Computed" >"$repoConfigHashPath"
+	# WriteConfig
+	updateRepoCfg=$(echo "$sha256Expected" |
+		jq --arg sha256 "$sha256Computed" 'if length > 0 then . else {} end | .repo-config.sha256 = $sha256')
+	writeConfig 'update-repo' "$updateRepoCfg"
+	# UpdateFile
 	archiveList="\n"
 	archiveList+="UpdateTime: $ZD_DATE"
 	archiveList+="\n"
