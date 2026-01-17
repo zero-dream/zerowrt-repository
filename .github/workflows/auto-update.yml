@@ -32,9 +32,8 @@ jobs:
         run: |
           WorkflowPath="$RUNNER_TEMP/Workflow-$(uuidgen | tr -d '-')"
           git clone --depth=1 https://github.com/zero-dream/action-workflow.git "$WorkflowPath/"
+          chmod +x "$WorkflowPath/zerodream/init/init.sh"
           source "$WorkflowPath/zerodream/init/init.sh"
-          echo "--- a01 ---"
-          echo "$CI_StoragePath"
           # --------------------------------------------------
           source "$ZD_ScriptLibPath/hook.sh"
           hook 'AutoUpdate/InitWorkflow'
@@ -43,7 +42,6 @@ jobs:
         run: |
           mkdir -p "$ZD_ReleaseUploadPath/mirror"
           mkdir -p "$ZD_ReleaseUploadPath/package"
-          sudo bash "$CI_ScriptPath/InitEnv.sh"
 
       - name: CollectRelease
         run: |
