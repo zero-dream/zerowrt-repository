@@ -15,8 +15,8 @@ source "$ZD_ScriptLibPath/config.sh"
 cd "$GITHUB_WORKSPACE/"
 
 repoCfgPath="$GITHUB_WORKSPACE/config/RepoConfig.json5"
-repoJson=$(json5 "$repoCfgPath")
-repoLen=$(echo "$repoJson" | jq '. | length')
+repoCfgJson=$(json5 "$repoCfgPath")
+repoCfgLen=$(echo "$repoCfgJson" | jq '. | length')
 
 # --------------------------------------------------
 
@@ -36,9 +36,9 @@ if [[ "$sha256Expected" != "$sha256Computed" ]]; then
 	archiveList+="\n"
 	archiveList+="|Name|Link|\n"
 	archiveList+="|----|----|\n"
-	for ((i = 0; i < repoLen; i++)); do
-		name=$(echo "$repoJson" | jq -r ".[$i].name")
-		repo=$(echo "$repoJson" | jq -r ".[$i].repo")
+	for ((i = 0; i < repoCfgLen; i++)); do
+		name=$(echo "$repoCfgJson" | jq -r ".[$i].name")
+		repo=$(echo "$repoCfgJson" | jq -r ".[$i].repo")
 		archiveList+="| $name | [$repo](https://github.com/$repo) |\n"
 	done
 	awk -i inplace -v value="$archiveList" '

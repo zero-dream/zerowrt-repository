@@ -12,8 +12,8 @@ source "$ZD_ScriptLibPath/createPath.sh"
 cd "$GITHUB_WORKSPACE/"
 
 repoCfgPath="$GITHUB_WORKSPACE/config/RepoConfig.json5"
-repoJson=$(json5 "$repoCfgPath")
-repoLen=$(echo "$repoJson" | jq '. | length')
+repoCfgJson=$(json5 "$repoCfgPath")
+repoCfgLen=$(echo "$repoCfgJson" | jq '. | length')
 
 # --------------------------------------------------
 
@@ -22,9 +22,9 @@ mirrorPath="$ZD_ReleaseUploadPath/mirror"
 packagePath="$ZD_ReleaseUploadPath/package"
 repoMirrorPath="$(createTempPath 'Temp_RepoMirror:dir')"
 repoPackagePath="$(createTempPath 'Temp_RepoPackage:dir')"
-for ((i = 0; i < repoLen; i++)); do
-	name=$(echo "$repoJson" | jq -r ".[$i].name")
-	repo=$(echo "$repoJson" | jq -r ".[$i].repo")
+for ((i = 0; i < repoCfgLen; i++)); do
+	name=$(echo "$repoCfgJson" | jq -r ".[$i].name")
+	repo=$(echo "$repoCfgJson" | jq -r ".[$i].repo")
 	# Mirror
 	git clone --mirror "https://github.com/$repo.git" "$repoMirrorPath/$name.git/"
 	cd "$repoMirrorPath/$name.git/"
@@ -40,8 +40,8 @@ rm -rf "$repoPackagePath/"
 
 # CreateIndexFile
 archiveListFile=""
-for ((i = 0; i < repoLen; i++)); do
-	name=$(echo "$repoJson" | jq -r ".[$i].name")
+for ((i = 0; i < repoCfgLen; i++)); do
+	name=$(echo "$repoCfgJson" | jq -r ".[$i].name")
 	archiveListFile+="$name\n"
 done
 echo "$archiveListFile" >"01-ArchiveList"
