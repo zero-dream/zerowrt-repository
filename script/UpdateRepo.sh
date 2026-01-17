@@ -33,7 +33,12 @@ if [[ "$sha256Expected" != "$sha256Computed" ]]; then
 	echo "$sha256Computed"
 	echo '--------------'
 	updateRepoCfg=$(echo "$sha256Expected" |
-		jq --arg sha256 "$sha256Computed" 'if length > 0 then . else {} end | .["repo-config"].sha256 = $sha256')
+		jq --arg sha256 "$sha256Computed" '
+        try . catch {} | 
+        if type == "object" then . else {} end |
+        .["repo-config"] = (.["repo-config"] // {}) |
+        .["repo-config"].sha256 = $sha256
+    ')
 	echo '--------------'
 	echo "$updateRepoCfg"
 	echo '--------------'
