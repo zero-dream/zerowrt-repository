@@ -23,7 +23,7 @@ repoCfgLen=$(echo "$repoCfgJson" | jq '. | length')
 # UpdateArchiveList
 updateRepoCfg=$(readConfig 'update-repo')
 repoConfigPath="$updatePath/config/RepoConfig.json5"
-sha256Expected=$(echo "$updateRepoCfg" | jq -r '.repo-config.sha256 // ""')
+sha256Expected=$(echo "$updateRepoCfg" | jq -r '.["repo-config"].sha256 // ""')
 sha256Computed=$(sha256sum "$repoConfigPath" | awk '{print $1}')
 if [[ "$sha256Expected" != "$sha256Computed" ]]; then
 	# WriteConfig
