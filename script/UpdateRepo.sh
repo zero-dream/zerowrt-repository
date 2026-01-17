@@ -27,13 +27,16 @@ sha256Expected=$(echo "$updateRepoCfg" | jq -r '.repo-config.sha256 // ""')
 sha256Computed=$(sha256sum "$repoConfigPath" | awk '{print $1}')
 if [[ "$sha256Expected" != "$sha256Computed" ]]; then
 	# WriteConfig
+	echo '--------------'
+	echo "$sha256Expected"
+	echo '--------------'
+	echo "$sha256Computed"
+	echo '--------------'
 	updateRepoCfg=$(echo "$sha256Expected" |
 		jq --arg sha256 "$sha256Computed" 'if length > 0 then . else {} end | .repo-config.sha256 = $sha256')
-echo '--------------'
-		echo "$sha256Computed"
-echo '--------------'
-		echo "$updateRepoCfg"
-echo '--------------'
+	echo '--------------'
+	echo "$updateRepoCfg"
+	echo '--------------'
 	writeConfig 'update-repo' "$updateRepoCfg"
 	# UpdateFile
 	archiveList="\n"
