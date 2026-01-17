@@ -34,11 +34,12 @@ if [[ "$sha256Expected" != "$sha256Computed" ]]; then
 	echo '--------------'
 	updateRepoCfg=$(echo "$sha256Expected" |
 		jq --arg sha256 "$sha256Computed" '
-        if . == null or . == "" then 
-            {}
-        else 
-            .
-        end | 
+        # 处理空值或无效JSON
+        try . catch {} | 
+        # 确保是对象
+        if type == "object" then . else {} end |
+        # 设置sha256值
+        .["repo-config"] = (.["repo-config"] // {}) |
         .["repo-config"].sha256 = $sha256
     ')
 	echo '--------------'
