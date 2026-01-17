@@ -29,6 +29,7 @@ if [[ "$sha256Expected" != "$sha256Computed" ]]; then
 	# WriteConfig
 	updateRepoCfg=$(echo "$sha256Expected" |
 		jq --arg sha256 "$sha256Computed" 'if length > 0 then . else {} end | .repo-config.sha256 = $sha256')
+		echo "$updateRepoCfg"
 	writeConfig 'update-repo' "$updateRepoCfg"
 	# UpdateFile
 	archiveList="\n"
