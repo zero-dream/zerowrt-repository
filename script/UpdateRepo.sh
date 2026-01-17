@@ -32,7 +32,7 @@ if [[ "$sha256Expected" != "$sha256Computed" ]]; then
 	echo '--------------'
 	echo "$sha256Computed"
 	echo '--------------'
-	updateRepoCfg=$(echo "$sha256Expected" |
+	updateRepoCfg=$(echo "$updateRepoCfg" |
 		jq --arg sha256 "$sha256Computed" '
         try . catch {} | 
         if type == "object" then . else {} end |
