@@ -7,4 +7,8 @@
     'name': 'luci-app-argon-config',
     'repo': 'jerrykuku/luci-app-argon-config',
   },
+  {
+    'name': 'luci-app-diskman',
+    'repo': 'lisaac/luci-app-diskman',
+  },
 ]
