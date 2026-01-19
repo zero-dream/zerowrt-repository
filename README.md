@@ -39,7 +39,7 @@
 packages=(
   'luci-theme-argon'
   'luci-app-argon-config'
-  # ... more packages
+  # ... To see more packages, please click on <ViewArchiveList> above
 )
 wrtPath='./zerowrt' # Please replace it with the wrt build path
 repoUrl='https://github.com/zero-dream/zerowrt-repository/releases/latest/download'
