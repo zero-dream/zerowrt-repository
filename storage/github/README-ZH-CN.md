@@ -32,19 +32,23 @@
 
   ### 使用方法
 
-  ```bash
-  # Bash
-  packages=(
-    'luci-theme-argon'
-    'luci-app-argon-config'
-    # ... more packages
-  )
-  wrtPath='./zerowrt' # 请替换为 wrt 编译路径
-  repoUrl='https://github.com/zero-dream/zerowrt-repository/releases/latest/download'
-  for package in "${packages[@]}"; do
-    curl -L "$repoUrl/$package.tar.gz" | tar -xzv -C "$wrtPath/package/"
-  done
-  ```
+  <div align="left">
+
+    ```bash
+    # Bash
+    packages=(
+      'luci-theme-argon'
+      'luci-app-argon-config'
+      # ... more packages
+    )
+    wrtPath='./zerowrt' # 请替换为 wrt 编译路径
+    repoUrl='https://github.com/zero-dream/zerowrt-repository/releases/latest/download'
+    for package in "${packages[@]}"; do
+      curl -L "$repoUrl/$package.tar.gz" | tar -xzv -C "$wrtPath/package/"
+    done
+    ```
+
+  </div>
 
   \--------------------------------------------------
 
