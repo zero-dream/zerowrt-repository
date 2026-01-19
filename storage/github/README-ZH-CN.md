@@ -34,7 +34,7 @@
 
   <div align="left">
 
-    ```shell
+    ```bash
     # Bash
     packages=(
       'luci-theme-argon'
