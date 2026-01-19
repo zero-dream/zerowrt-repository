@@ -20,6 +20,18 @@
 
   请查看各自原始仓库
 
+  ### 相关仓库
+
+  [zero-dream/action-workflow](https://github.com/zero-dream/action-workflow)
+
+  [zero-dream/zerowrt-firmware](https://github.com/zero-dream/zerowrt-firmware)
+
+  [zero-dream/zerowrt-package](https://github.com/zero-dream/zerowrt-package)
+
+  [zero-dream/zerowrt-immortalwrt](https://github.com/zero-dream/zerowrt-immortalwrt)
+
+  [zero-dream/zerowrt-repository (self)](https://github.com/zero-dream/zerowrt-repository)
+
   \--------------------------------------------------
 
   ### 快速访问

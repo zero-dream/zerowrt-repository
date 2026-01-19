@@ -20,6 +20,18 @@
 
   Please check each original repository
 
+  ### Related Repository
+
+  [zero-dream/action-workflow](https://github.com/zero-dream/action-workflow)
+
+  [zero-dream/zerowrt-firmware](https://github.com/zero-dream/zerowrt-firmware)
+
+  [zero-dream/zerowrt-package](https://github.com/zero-dream/zerowrt-package)
+
+  [zero-dream/zerowrt-immortalwrt](https://github.com/zero-dream/zerowrt-immortalwrt)
+
+  [zero-dream/zerowrt-repository (self)](https://github.com/zero-dream/zerowrt-repository)
+
   \--------------------------------------------------
 
   ### Quick Access
