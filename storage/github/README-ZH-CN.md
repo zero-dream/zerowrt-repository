@@ -39,7 +39,7 @@
 packages=(
   'luci-theme-argon'
   'luci-app-argon-config'
-  # ... 查看更多软件包请点击上面的 <查看归档列表>
+  # ... 查看更多软件包，请点击上面的 <查看归档列表>
 )
 wrtPath='./zerowrt' # 请替换为 wrt 编译路径
 repoUrl='https://github.com/zero-dream/zerowrt-repository/releases/latest/download'
