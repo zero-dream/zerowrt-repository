@@ -12,8 +12,6 @@
 
   定期归档 OpenWrt 软件包
 
-  \--------------------------------------------------
-
   ### 注意事项
 
   本仓库仅用于归档
@@ -29,6 +27,24 @@
   [查看归档列表][archive-list]
 
   [查看最新软件包][latest-package]
+
+  \--------------------------------------------------
+
+  ### 使用方法
+
+  ```bash
+  # Bash
+  packages=(
+    'luci-theme-argon'
+    'luci-app-argon-config'
+    # ... more packages
+  )
+  wrtPath='./zerowrt' # 请替换为 wrt 编译路径
+  repoUrl='https://github.com/zero-dream/zerowrt-repository/releases/latest/download'
+  for package in "${packages[@]}"; do
+    curl -L "$repoUrl/$package.tar.gz" | tar -xzv -C "$wrtPath/package/"
+  done
+  ```
 
   \--------------------------------------------------
 
