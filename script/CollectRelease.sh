@@ -31,7 +31,7 @@ for cfgPath in "$repoCfgPath"/*; do
 		git clone --mirror "https://github.com/$repo.git" "$repoMirrorPath/$name.git/"
 		cd "$repoMirrorPath/$name.git/"
 		git bundle create "$mirrorPath/$name-$ZD_DATE.bundle" --all
-		cd "$GITHUB_WORKSPACE/"
+		# cd "$GITHUB_WORKSPACE/"
 		# Package
 		git clone --depth=1 --single-branch --branch "$branch" "https://github.com/$repo.git" "$repoPackagePath/$name"
 		tar -czpf "$packagePath/$name.tar.gz" \
