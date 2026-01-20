@@ -20,7 +20,7 @@ for cfgPath in "$repoCfgPath"/*; do
 
 	# UpdateRelease
 	mirrorPath="$ZD_ReleaseUploadPath/mirror"
-	packagePath="$ZD_ReleaseUploadPath/package"
+	="$ZD_ReleaseUploadPath/package"
 	repoMirrorPath="$(createTempPath 'Temp_RepoMirror:dir')"
 	repoPackagePath="$(createTempPath 'Temp_RepoPackage:dir')"
 	for ((i = 0; i < cfgLen; i++)); do
@@ -31,6 +31,7 @@ for cfgPath in "$repoCfgPath"/*; do
 		git clone --mirror "https://github.com/$repo.git" "$repoMirrorPath/$name.git/"
 		cd "$repoMirrorPath/$name.git/"
 		git bundle create "$mirrorPath/$name-$ZD_DATE.bundle" --all
+		cd packagePath"$GITHUB_WORKSPACE/"
 		# Package
 		git clone --depth=1 --single-branch --branch "$branch" "https://github.com/$repo.git" "$repoPackagePath/$name"
 		tar -czpf "$packagePath/$name.tar.gz" \
@@ -46,7 +47,8 @@ for cfgPath in "$repoCfgPath"/*; do
 		name=$(echo "$cfgJson" | jq -r ".[$i].name")
 		archiveListFile+="$name\n"
 	done
-	echo "$archiveListFile" >"01-ArchiveList"
+	echo "$archiveListFile" >"$mirrorPath/01-ArchiveList"
+	echo "$archiveListFile" >"$packagePath/01-ArchiveList"
 
 done
 
