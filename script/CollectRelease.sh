@@ -43,8 +43,8 @@ for cfgPath in "$repoCfgPath"/*; do
 	# CreateIndexFile
 	for ((i = 0; i < cfgLen; i++)); do
 		name=$(echo "$cfgJson" | jq -r ".[$i].name")
-		echo "$name" >>"$mirrorPath/01-ArchiveList"
-		echo "$name" >>"$packagePath/01-ArchiveList"
+		echo "$name" >>"$mirrorPath/01-ArchiveList-$ZD_DATE"
+		echo "$name" >>"$packagePath/01-ArchiveList-$ZD_DATE"
 	done
 
 done
