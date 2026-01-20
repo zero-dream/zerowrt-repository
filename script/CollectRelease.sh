@@ -13,6 +13,7 @@ cd "$GITHUB_WORKSPACE/"
 
 # --------------------------------------------------
 
+# RepositoryRelease
 repoMirrorPath="$(createTempPath 'Temp_RepoMirror:dir')"
 repoPackagePath="$(createTempPath 'Temp_RepoPackage:dir')"
 repoCfgPath="$GITHUB_WORKSPACE/config/repository"
@@ -23,7 +24,6 @@ for cfgPath in "$repoCfgPath"/*; do
 	# UpdateRelease
 	mirrorPath="$ZD_ReleaseUploadPath/mirror"
 	packagePath="$ZD_ReleaseUploadPath/package"
-
 	for ((i = 0; i < cfgLen; i++)); do
 		name=$(echo "$cfgJson" | jq -r ".[$i].name")
 		repo=$(echo "$cfgJson" | jq -r ".[$i].repo")
@@ -51,7 +51,7 @@ done
 rm -rf "$repoMirrorPath/"
 rm -rf "$repoPackagePath/"
 
-# ReleaseBody
+# BodyRelease
 cat >"$CI_MirrorReleaseBodyPath" <<-EOF
 	Mirror Release Archive
 	镜像资源归档
