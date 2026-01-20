@@ -42,13 +42,11 @@ for cfgPath in "$repoCfgPath"/*; do
 	rm -rf "$repoPackagePath/"
 
 	# CreateIndexFile
-	archiveListFile=""
 	for ((i = 0; i < cfgLen; i++)); do
 		name=$(echo "$cfgJson" | jq -r ".[$i].name")
-		archiveListFile+="$name\n"
+		echo "$name" >>"$mirrorPath/01-ArchiveList"
+		echo "$name" >>"$packagePath/01-ArchiveList"
 	done
-	echo "$archiveListFile" >"$mirrorPath/01-ArchiveList"
-	echo "$archiveListFile" >"$packagePath/01-ArchiveList"
 
 done
 
