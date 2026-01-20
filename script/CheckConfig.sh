@@ -9,6 +9,7 @@ cd "$GITHUB_WORKSPACE/"
 # --------------------------------------------------
 
 # CheckConfig
+isExit=0
 declare -A repos
 repoCfgPath="$GITHUB_WORKSPACE/config/repository"
 for cfgPath in "$repoCfgPath"/*; do
@@ -18,8 +19,9 @@ for cfgPath in "$repoCfgPath"/*; do
 		name=$(echo "$cfgJson" | jq -r ".[$i].name")
 		if [[ -n "${repos[$name]}" ]]; then
 			echo "Error: $name: duplicate package exists"
-			exit 0
+			isExit=1
 		fi
 		repos["$name"]=1
 	done
 done
+[[ $isExit -eq 1 ]] && exit 1
