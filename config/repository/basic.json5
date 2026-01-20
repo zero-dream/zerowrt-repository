@@ -1,14 +1,13 @@
 [
-
+  {
+    'name': 'luci-app-partexp1',
+    'repo': 'sirpdboy/luci-app-partexp',
+    'branch': 'main',
+  },
   {
     'name': 'luci-app-diskman',
     'repo': 'lisaac/luci-app-diskman',
     'branch': 'master',
-  },
-    {
-    'name': 'luci-app-partexp',
-    'repo': 'sirpdboy/luci-app-partexp',
-    'branch': 'main',
   },
   {
     'name': 'luci-app-wolplus',
