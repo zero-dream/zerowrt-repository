@@ -35,9 +35,6 @@ jobs:
           chmod +x "$workflowPath/zerodream/init/init.sh"
           bash "$workflowPath/zerodream/init/init.sh"
           rm -rf "$workflowPath/"
-          # --------------------------------------------------
-          source "$ZD_ScriptLibPath/hook.sh"
-          hook 'AutoUpdate/InitWorkflow'
 
       - name: InitEnv
         run: |
