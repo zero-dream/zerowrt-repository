@@ -17,8 +17,8 @@ for cfgPath in "$repoCfgPath"/*; do
 	for ((i = 0; i < cfgLen; i++)); do
 		name=$(echo "$cfgJson" | jq -r ".[$i].name")
 		if [[ -n "${repos[$name]}" ]]; then
-			echo 'Error: duplicate package exists'
-			exit 1
+			echo "Error: $name: duplicate package exists"
+			exit 0
 		fi
 		repos["$name"]=1
 	done
