@@ -1,6 +1,6 @@
 [
   {
-    'name': 'luci-app-partexp1',
+    'name': 'luci-app-partexp',
     'repo': 'sirpdboy/luci-app-partexp',
     'branch': 'main',
   },
