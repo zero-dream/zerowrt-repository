@@ -1,5 +1,4 @@
 [
-  // Theme
   {
     'name': 'luci-theme-argon',
     'repo': 'jerrykuku/luci-theme-argon',
@@ -9,21 +8,5 @@
     'name': 'luci-app-argon-config',
     'repo': 'jerrykuku/luci-app-argon-config',
     'branch': 'master',
-  },
-  // BasicPackage
-  {
-    'name': 'luci-app-partexp',
-    'repo': 'sirpdboy/luci-app-partexp',
-    'branch': 'main',
-  },
-  {
-    'name': 'luci-app-diskman',
-    'repo': 'lisaac/luci-app-diskman',
-    'branch': 'master',
-  },
-  {
-    'name': 'luci-app-wolplus',
-    'repo': 'animegasan/luci-app-wolplus',
-    'branch': 'main',
   },
 ]

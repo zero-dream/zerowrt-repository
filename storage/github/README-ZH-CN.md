@@ -44,7 +44,9 @@ packages=(
 wrtPath='./zerowrt' # 请替换为 wrt 编译路径
 repoUrl='https://github.com/zero-dream/zerowrt-repository/releases/latest/download'
 for package in "${packages[@]}"; do
-  curl -L "$repoUrl/$package.tar.gz" | tar -xzv -C "$wrtPath/package/"
+  pkgPath="$wrtPath/package/zerowrt"
+  mkdir -p "$pkgPath"
+  curl -L "$repoUrl/$package.tar.gz" | tar -xz -C "$pkgPath"
 done
 ```
 
