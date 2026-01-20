@@ -25,3 +25,5 @@ for cfgPath in "$repoCfgPath"/*; do
 	done
 done
 [[ $isExit -eq 1 ]] && exit 1
+
+return 0
