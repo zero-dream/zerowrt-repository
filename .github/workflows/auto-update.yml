@@ -48,8 +48,8 @@ jobs:
       - name: CollectRelease
         run: |
           # SetEnv
-          source "$ZD_ScriptLibPath/setEnv.sh"
-          source "$ZD_ScriptLibPath/createPath.sh"
+          source "$ZD_LibPath/setEnv.sh"
+          source "$ZD_LibPath/createPath.sh"
           setEnv 'CI_MirrorReleaseBodyPath' "$(createTempPath 'CI_MirrorReleaseBody:file')"
           setEnv 'CI_PackageReleaseBodyPath' "$(createTempPath 'CI_PackageReleaseBody:file')"
           # CollectRelease
@@ -78,7 +78,7 @@ jobs:
 
       - name: UpdateRepo
         run: |
-          source "$ZD_ScriptLibPath/updateRepo.sh"
+          source "$ZD_LibPath/updateRepo.sh"
           updatePath=$(cloneRepo)
           bash "$CI_ScriptPath/UpdateRepo.sh" "$updatePath"
           commit=$ZD_DATE

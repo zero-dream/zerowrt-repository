@@ -8,7 +8,7 @@
 updatePath=$1
 
 # Source
-source "$ZD_ScriptLibPath/config.sh"
+source "$ZD_LibPath/config.sh"
 
 # --------------------------------------------------
 
