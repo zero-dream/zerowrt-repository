@@ -62,6 +62,7 @@ done
   | hook | Workflow 专用目录 |
   | application | 应用目录 |
   | config | 配置目录 |
+  | library | 库目录 |
   | script | 脚本目录 |
   | storage | 储存目录 |
 
