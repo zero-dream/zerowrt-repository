@@ -68,7 +68,7 @@ done
 
   ### 相关仓库
 
-  [zero-dream/action-workflow](https://github.com/zero-dream/action-workflow)
+  [zero-dream/github-action](https://github.com/zero-dream/github-action)
 
   [zero-dream/zerowrt-firmware](https://github.com/zero-dream/zerowrt-firmware)
 
