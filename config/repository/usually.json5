@@ -1,0 +1,14 @@
+[
+  {
+    // 支持多种存储的文件列表程序
+    'name': 'luci-app-openlist2',
+    'repo': 'sbwml/luci-app-openlist2',
+    'branch': 'main',
+  },
+  {
+    // 使用微信、Telegram、邮件推送通知
+    'name': 'luci-app-wechatpush',
+    'repo': 'tty228/luci-app-wechatpush',
+    'branch': 'master',
+  },
+]

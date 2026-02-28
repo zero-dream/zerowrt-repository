@@ -1,0 +1,90 @@
+# CI 项目
+name: auto-update
+
+# CI 权限
+permissions: write-all
+
+# CI 计划
+on:
+  # 自动运行: 每天早上 3 点
+  schedule:
+    - cron: 0 19 * * *
+  # 手动运行
+  workflow_dispatch:
+
+# CI 环境
+env:
+  # GITHUB ENV
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+# CI 任务
+jobs:
+  auto-update:
+    name: auto-update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          token: ${{secrets.WORKFLOW_TOKEN}}
+
+      - name: InitWorkflow
+        run: |
+          workflowPath="$RUNNER_TEMP/Workflow-$(uuidgen | tr -d '-')"
+          git clone --depth=1 https://github.com/zero-dream/github-action.git "$workflowPath/" || exit 1
+          chmod +x "$workflowPath/zerodream/init/init.sh"
+          bash "$workflowPath/zerodream/init/init.sh"
+          rm -rf "$workflowPath/"
+
+      - name: InitEnv
+        run: |
+          mkdir -p "$ZD_ReleaseUploadPath/mirror"
+          mkdir -p "$ZD_ReleaseUploadPath/package"
+
+      - name: CheckConfig
+        run: |
+          bash "$CI_ScriptPath/CheckConfig.sh"
+
+      - name: CollectRelease
+        run: |
+          # SetEnv
+          source "$ZD_LibPath/setEnv.sh"
+          source "$ZD_LibPath/createPath.sh"
+          setEnv 'CI_MirrorReleaseBodyPath' "$(createTempPath 'CI_MirrorReleaseBody:file')"
+          setEnv 'CI_PackageReleaseBodyPath' "$(createTempPath 'CI_PackageReleaseBody:file')"
+          # CollectRelease
+          bash "$CI_ScriptPath/CollectRelease.sh"
+          # UploadReleaseBodyEnv
+          echo 'CI_MirrorReleaseBody<<EOF' >>$GITHUB_ENV
+          cat "$CI_MirrorReleaseBodyPath" >>$GITHUB_ENV
+          echo 'EOF' >>$GITHUB_ENV
+          echo 'CI_PackageReleaseBody<<EOF' >>$GITHUB_ENV
+          cat "$CI_PackageReleaseBodyPath" >>$GITHUB_ENV
+          echo 'EOF' >>$GITHUB_ENV
+
+      - name: UploadRelease-Mirror
+        uses: softprops/action-gh-release@master
+        with:
+          tag_name: Repo-${{env.ZD_DATE}}-Mirror
+          files: ${{env.ZD_ReleaseUploadPath}}/mirror/**
+          body: ${{env.CI_MirrorReleaseBody}}
+
+      - name: UploadRelease-Package
+        uses: softprops/action-gh-release@master
+        with:
+          tag_name: Repo-${{env.ZD_DATE}}-Package
+          files: ${{env.ZD_ReleaseUploadPath}}/package/**
+          body: ${{env.CI_PackageReleaseBody}}
+
+      - name: UpdateRepo
+        run: |
+          source "$ZD_LibPath/updateRepo.sh"
+          updatePath=$(cloneRepo)
+          bash "$CI_ScriptPath/UpdateRepo.sh" "$updatePath"
+          commit=$ZD_DATE
+          pushRepo "$commit"
+
+  clean:
+    name: clean-release
+    needs: [auto-update]
+    uses: ./.github/workflows/clean-release.yml

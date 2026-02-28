@@ -1,0 +1,26 @@
+[
+  {
+    // Tailscale 图形面板
+    'name': 'luci-app-tailscale-community',
+    'repo': 'Tokisaki-Galaxy/luci-app-tailscale-community',
+    'branch': 'master',
+  },
+  {
+    // DNS 转发器
+    'name': 'luci-app-mosdns',
+    'repo': 'sbwml/luci-app-mosdns',
+    'branch': 'v5',
+  },
+  {
+    // 自动获取公网 IPv4 或 IPv6 地址，并解析到对应的域名服务
+    'name': 'luci-app-ddns-go',
+    'repo': 'sirpdboy/luci-app-ddns-go',
+    'branch': 'main',
+  },
+  {
+    // 内网网页版测速、内网 iperf3 吞吐测速、外网 speedtest.net 测速、特定服务器端口延迟测速
+    'name': 'luci-app-netspeedtest',
+    'repo': 'sirpdboy/luci-app-netspeedtest',
+    'branch': 'master',
+  },
+]
