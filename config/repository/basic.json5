@@ -1,0 +1,20 @@
+[
+  {
+    // 磁盘分区、格式化，支持 raid / btrfs-raid / btrfs-snapshot
+    'name': 'luci-app-diskman',
+    'repo': 'lisaac/luci-app-diskman',
+    'branch': 'master',
+  },
+  {
+    // 网络唤醒
+    'name': 'luci-app-wolplus',
+    'repo': 'animegasan/luci-app-wolplus',
+    'branch': 'main',
+  },
+  {
+    // 一键格式化分区、扩容、自动挂载
+    'name': 'luci-app-partexp',
+    'repo': 'sirpdboy/luci-app-partexp',
+    'branch': 'main',
+  },
+]

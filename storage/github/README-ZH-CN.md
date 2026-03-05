@@ -6,31 +6,31 @@
 
 <div align="center">
 
-  ### ZeroWrt-Repository
+  ### ZeroWrt Repository
 
-  **English** | [简体中文][zh-cn-link]
+  [English][en-us-link] | **简体中文**
 
-  Scheduled archiving of OpenWrt packages
+  计划归档 OpenWrt 软件包
 
-  ### Precautions
+  ### 注意事项
 
-  This repository is for archival purposes only
+  本仓库仅用于归档
 
-  For the copyright and license information of the software packages
+  软件包的版权与许可证信息
 
-  Please check each original repository
-
-  \--------------------------------------------------
-
-  ### Quick Access
-
-  [ViewArchiveList][archive-list]
-
-  [ViewLatestPackage][latest-package]
+  请查看各自原始仓库
 
   \--------------------------------------------------
 
-  ### Usage
+  ### 快速访问
+
+  [查看归档列表][archive-list]
+
+  [查看最新软件包][latest-package]
+
+  \--------------------------------------------------
+
+  ### 使用方法
 
   <div align="left">
 
@@ -39,9 +39,9 @@
 packages=(
   'luci-theme-argon'
   'luci-app-argon-config'
-  # ... To see more packages, please click on <ViewArchiveList> above
+  # ... 查看更多软件包，请点击上面的 <查看归档列表>
 )
-wrtPath='./zerowrt' # Please replace it with the wrt build path
+wrtPath='./zerowrt' # 请替换为 wrt 编译路径
 repoUrl='https://github.com/zero-dream/zerowrt-repository/releases/latest/download'
 for package in "${packages[@]}"; do
   pkgPath="$wrtPath/package/zerowrt"
