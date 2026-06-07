@@ -32,7 +32,7 @@ for cfgPath in "$repoCfgPath"/*; do
 		# Mirror
 		git clone --mirror "https://github.com/$repo.git" "$repoMirrorPath/$name.git/"
 		cd "$repoMirrorPath/$name.git/"
-		git bundle create "$mirrorPath/$name-$ZD_Date.bundle" --all
+		git bundle create "$mirrorPath/$name-$ZD_DateUTC.bundle" --all
 		cd "$GITHUB_WORKSPACE/"
 		# Package
 		git clone --depth=1 --single-branch --branch "$branch" "https://github.com/$repo.git" "$repoPackagePath/$name"
@@ -43,7 +43,7 @@ for cfgPath in "$repoCfgPath"/*; do
 	# CreateIndexFile
 	for ((i = 0; i < cfgLen; i++)); do
 		name=$(echo "$cfgJson" | jq -r ".[$i].name")
-		echo "$name" >>"$mirrorPath/00-IndexList-$ZD_Date"
+		echo "$name" >>"$mirrorPath/00-IndexList-$ZD_DateUTC"
 		echo "$name" >>"$packagePath/00-IndexList"
 	done
 done
@@ -51,7 +51,7 @@ rm -rf "$repoMirrorPath/"
 rm -rf "$repoPackagePath/"
 
 # ArchiveList
-cp -a "$CI_TempPath/ArchiveList/ArchiveList.md" "$mirrorPath/01-ArchiveList-$ZD_Date.md"
+cp -a "$CI_TempPath/ArchiveList/ArchiveList.md" "$mirrorPath/01-ArchiveList-$ZD_DateUTC.md"
 cp -a "$CI_TempPath/ArchiveList/ArchiveList.md" "$packagePath/01-ArchiveList.md"
 
 # BodyRelease
