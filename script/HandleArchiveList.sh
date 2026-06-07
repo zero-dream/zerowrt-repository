@@ -20,7 +20,7 @@ cp -a "$CI_StoragePath/github/ArchiveList.md" "$archiveListPath/ArchiveList.md"
 # GenerateData
 repositorys=()
 archiveList="\n"
-archiveList+="UpdateTime: $ZD_Date"
+archiveList+="UpdateTime: $ZD_DateUTC"
 archiveList+="\n"
 archiveList+="|Name|Link|\n"
 archiveList+="|----|----|\n"
