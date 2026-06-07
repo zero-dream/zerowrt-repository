@@ -1,5 +1,5 @@
 # CI 项目
-name: auto-update
+name: update-repo
 
 # CI 权限
 permissions: write-all
@@ -19,8 +19,8 @@ env:
 
 # CI 任务
 jobs:
-  auto-update:
-    name: auto-update
+  update-repo:
+    name: update-repo
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -72,14 +72,14 @@ jobs:
       - name: UploadRelease-Mirror
         uses: softprops/action-gh-release@master
         with:
-          tag_name: Repo-${{env.ZD_Date}}-Mirror
+          tag_name: Repo-${{env.ZD_DateUTC}}-Mirror
           files: ${{env.ZD_ReleaseUploadPath}}/mirror/**
           body: ${{env.CI_MirrorReleaseBody}}
 
       - name: UploadRelease-Package
         uses: softprops/action-gh-release@master
         with:
-          tag_name: Repo-${{env.ZD_Date}}-Package
+          tag_name: Repo-${{env.ZD_DateUTC}}-Package
           files: ${{env.ZD_ReleaseUploadPath}}/package/**
           body: ${{env.CI_PackageReleaseBody}}
 
@@ -88,5 +88,5 @@ jobs:
           source "$ZD_LibPath/updateRepo.sh"
           updatePath=$(cloneRepo)
           bash "$CI_ScriptPath/UpdateRepo.sh" "$updatePath"
-          commit=$ZD_Date
+          commit=$ZD_DateUTC
           pushRepo "$commit"
