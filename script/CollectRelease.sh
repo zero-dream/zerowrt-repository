@@ -5,7 +5,7 @@
 # --------------------------------------------------
 
 # Source
-source "$ZD_LibPath/createPath.sh"
+source "$ZD_ScriptPath/createPath.sh"
 
 # --------------------------------------------------
 
