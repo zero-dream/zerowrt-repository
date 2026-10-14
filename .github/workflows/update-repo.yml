@@ -30,7 +30,7 @@ jobs:
 
       - name: InitWorkflow
         run: |
-          workflowPath="$RUNNER_TEMP/Workflow-$(uuidgen | tr -d '-')"
+          workflowPath="$(mktemp -d "$RUNNER_TEMP/ZeroDream-Workflow-XXXXXX")"
           git clone --depth=1 https://github.com/zero-dream/github-action.git "$workflowPath/" || exit 1
           chmod +x "$workflowPath/zerodream/init/init.sh"
           bash "$workflowPath/zerodream/init/init.sh"
@@ -38,8 +38,8 @@ jobs:
 
       - name: InitEnv
         run: |
-          source "$ZD_LibPath/setEnv.sh"
-          source "$ZD_LibPath/createPath.sh"
+          source "$ZD_ScriptPath/setEnv.sh"
+          source "$ZD_ScriptPath/createPath.sh"
           setEnv 'CI_TempPath' "$(createTempPath 'CiTemp:dir')"
           mkdir -p "$ZD_ReleaseUploadPath/mirror"
           mkdir -p "$ZD_ReleaseUploadPath/package"
@@ -55,8 +55,8 @@ jobs:
       - name: CollectRelease
         run: |
           # SetEnv
-          source "$ZD_LibPath/setEnv.sh"
-          source "$ZD_LibPath/createPath.sh"
+          source "$ZD_ScriptPath/setEnv.sh"
+          source "$ZD_ScriptPath/createPath.sh"
           setEnv 'CI_MirrorReleaseBodyPath' "$(createTempPath 'CI_MirrorReleaseBody:file')"
           setEnv 'CI_PackageReleaseBodyPath' "$(createTempPath 'CI_PackageReleaseBody:file')"
           # CollectRelease
@@ -85,7 +85,7 @@ jobs:
 
       - name: UpdateRepo
         run: |
-          source "$ZD_LibPath/updateRepo.sh"
+          source "$ZD_ScriptPath/updateRepo.sh"
           updatePath=$(cloneRepo)
           bash "$CI_ScriptPath/UpdateRepo.sh" "$updatePath"
           commit=$ZD_DateUTC
