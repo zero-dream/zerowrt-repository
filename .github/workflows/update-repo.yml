@@ -72,14 +72,14 @@ jobs:
       - name: UploadRelease-Mirror
         uses: softprops/action-gh-release@master
         with:
-          tag_name: Repo-${{env.ZD_DateUTC}}-Mirror
+          tag_name: Repo-${{env.ZD_DateShangHai}}-Mirror
           files: ${{env.ZD_ReleaseUploadPath}}/mirror/**
           body: ${{env.CI_MirrorReleaseBody}}
 
       - name: UploadRelease-Package
         uses: softprops/action-gh-release@master
         with:
-          tag_name: Repo-${{env.ZD_DateUTC}}-Package
+          tag_name: Repo-${{env.ZD_DateShangHai}}-Package
           files: ${{env.ZD_ReleaseUploadPath}}/package/**
           body: ${{env.CI_PackageReleaseBody}}
 
@@ -88,5 +88,5 @@ jobs:
           source "$ZD_ScriptPath/updateRepo.sh"
           updatePath=$(cloneRepo)
           bash "$CI_ScriptPath/UpdateRepo.sh" "$updatePath"
-          commit=$ZD_DateUTC
+          commit=$ZD_DateShangHai
           pushRepo "$commit"
